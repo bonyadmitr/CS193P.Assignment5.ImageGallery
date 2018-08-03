@@ -63,12 +63,12 @@ class ImageGalleryViewController: UICollectionViewController, UICollectionViewDe
         collectionView?.delegate = self
         collectionView?.dataSource = self
         collectionView?.dragDelegate = self
-        collectionView?.dropDelegate = self
         
         collectionView?.backgroundColor = .lead
         
         collectionView?.register(ImageCell.self, forCellWithReuseIdentifier: "cellId")
-        collectionView?.addGestureRecognizer(UIPinchGestureRecognizer(target: self, action: #selector(scaleCell(_:))))
+        let gesture = UIPinchGestureRecognizer(target: self, action: #selector(scaleCell))
+        collectionView?.addGestureRecognizer(gesture)
     }
     
     private func setupNavigationController() {
@@ -272,10 +272,10 @@ class ImageGalleryViewController: UICollectionViewController, UICollectionViewDe
                 index = $0
             }
         }
-        collectionView.performBatchUpdates({
+        collectionView?.performBatchUpdates({
             let indexPath = IndexPath(item: index, section: 0)
             gallery.images.remove(at: index)
-            collectionView.deleteItems(at: [indexPath])
+            collectionView?.deleteItems(at: [indexPath])
         })
     }
 

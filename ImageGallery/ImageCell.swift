@@ -92,6 +92,7 @@ final class ImageCell: BaseCell {
     }
     
     override func setupViews() {
+        super.setupViews()
         contentView.addSubview(spinner)
         contentView.addSubview(imageView)
         contentView.activateConstraints(withVisualFormat: "H:|-2-[v0]-2-|", for: imageView)
