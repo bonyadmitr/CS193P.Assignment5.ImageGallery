@@ -62,6 +62,10 @@ extension UIColor {
     static let clover = #colorLiteral(red: 0, green: 0.5603182912, blue: 0, alpha: 1)
 }
 
+/// не советую создавать такие extensions
+/// сам так раньше делал, ухожу от этого
+/// функция достаточно узкая по предназначению
+/// я бы сделал класс и фукнцию куда передавал бы строку
 extension String {
     func madeUnique(withRespectTo otherStrings: [String]) -> String {
         var possiblyUnique = self

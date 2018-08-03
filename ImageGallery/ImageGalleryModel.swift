@@ -8,12 +8,7 @@
 
 import UIKit
 
-struct ImageGallery: Hashable {
-    var hashValue: Int { return identifier.hashValue }
-    
-    static func == (lhs: ImageGallery, rhs: ImageGallery) -> Bool {
-        return lhs.identifier == rhs.identifier
-    }
+struct ImageGallery {
     
     struct Image: Hashable {
         var hashValue: Int {
@@ -37,5 +32,16 @@ struct ImageGallery: Hashable {
     
     var images = [Image]()
     var title = String()
-    
+}
+
+extension ImageGallery: Equatable {
+    static func == (lhs: ImageGallery, rhs: ImageGallery) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
+}
+
+extension ImageGallery: Hashable {
+    var hashValue: Int {
+        return identifier.hashValue
+    }
 }

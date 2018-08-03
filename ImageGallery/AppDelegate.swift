@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
@@ -21,10 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         layuot.scrollDirection = .vertical
         layuot.finalizeAnimatedBoundsChange()
         
-        let splitVC = UISplitViewController(nibName: nil, bundle: nil)
+        //UISplitViewController()
+        let splitVC = UISplitViewController()
         splitVC.delegate = self
         
-        let masterNC = UINavigationController(rootViewController: TableViewController(nibName: nil, bundle: nil))
+        let masterNC = UINavigationController(rootViewController: TableViewController())
         let detailNC = UINavigationController(rootViewController: ImageGalleryViewController(collectionViewLayout: layuot))
         splitVC.viewControllers = [masterNC, detailNC]
         

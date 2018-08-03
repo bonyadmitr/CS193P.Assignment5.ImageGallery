@@ -109,7 +109,8 @@ class TableViewController: UITableViewController, DataForTableViewController, Ga
         return true
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
         if editingStyle == .delete {
             if indexPath.section == 0 {
                 let remove = galleryInsert.remove(at: indexPath.row)
@@ -125,7 +126,7 @@ class TableViewController: UITableViewController, DataForTableViewController, Ga
     
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if indexPath.section == 1 {
-            let undelete = UIContextualAction(style: .destructive, title: "Restore") { (action, view, completionHandler) in
+            let undelete = UIContextualAction(style: .destructive, title: "Restore") { _, _, completionHandler in
                 let gallery = self.galleries[indexPath.section][indexPath.row]
                 self.galleryRemove.remove(at: indexPath.row)
                 self.galleryInsert.insert(gallery, at: 0)
@@ -147,7 +148,9 @@ class TableViewController: UITableViewController, DataForTableViewController, Ga
         galleryInsert.append(newGallery)
         
         let indexPath = IndexPath(row: galleryInsert.count - 1, section: 0)
+        tableView.beginUpdates()
         tableView.insertRows(at: [indexPath], with: .automatic)
+        tableView.endUpdates()
     }
     
     func titleDidChange(_ title: String, in cell: UITableViewCell) {
